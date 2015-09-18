@@ -44,3 +44,4 @@ Temporary Items
 *.class
 *.prefs
 .settings/org.eclipse.wst.common.project.facet.core.xml
+/bin/
