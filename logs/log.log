@@ -1,0 +1,61 @@
+2015-09-18 14:11:45  [main:0] - [DEBUG]  Logging to org.slf4j.impl.Log4jLoggerAdapter(org.eclipse.jetty.util.log) via org.eclipse.jetty.util.log.Slf4jLog
+  2015-09-18 14:11:45  [main:13] - [INFO]  Logging initialized @539ms
+  2015-09-18 14:11:45  [main:34] - [DEBUG]  org.eclipse.jetty.server.Server@a67c67e added {qtp827966648{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+  2015-09-18 14:11:45  [main:80] - [DEBUG]  HttpConnectionFactory@6c49835d[HTTP/1.1] added {HttpConfiguration@67205a84{32768/8192,8192/8192,https://:0,[]},POJO}
+  2015-09-18 14:11:45  [main:99] - [DEBUG]  ServerConnector@7f13d6e{null,[]}{0.0.0.0:0} added {org.eclipse.jetty.server.Server@a67c67e,UNMANAGED}
+  2015-09-18 14:11:45  [main:101] - [DEBUG]  ServerConnector@7f13d6e{null,[]}{0.0.0.0:0} added {qtp827966648{STOPPED,8<=0<=200,i=0,q=0},AUTO}
+  2015-09-18 14:11:45  [main:102] - [DEBUG]  ServerConnector@7f13d6e{null,[]}{0.0.0.0:0} added {org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@1f554b06,AUTO}
+  2015-09-18 14:11:45  [main:103] - [DEBUG]  ServerConnector@7f13d6e{null,[]}{0.0.0.0:0} added {org.eclipse.jetty.io.ArrayByteBufferPool@23faf8f2,POJO}
+  2015-09-18 14:11:45  [main:108] - [DEBUG]  ServerConnector@7f13d6e{null,[http/1.1]}{0.0.0.0:0} added {HttpConnectionFactory@6c49835d[HTTP/1.1],AUTO}
+  2015-09-18 14:11:45  [main:112] - [DEBUG]  ServerConnector@7f13d6e{HTTP/1.1,[http/1.1]}{0.0.0.0:0} added HttpConnectionFactory@6c49835d[HTTP/1.1]
+  2015-09-18 14:11:45  [main:118] - [DEBUG]  ServerConnector@7f13d6e{HTTP/1.1,[http/1.1]}{0.0.0.0:0} added {org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@5a1c0542,MANAGED}
+  2015-09-18 14:11:45  [main:119] - [DEBUG]  org.eclipse.jetty.server.Server@a67c67e added {ServerConnector@7f13d6e{HTTP/1.1,[http/1.1]}{0.0.0.0:2014},AUTO}
+  2015-09-18 14:11:45  [main:180] - [DEBUG]  org.eclipse.jetty.websocket.server.WebSocketServerFactory@58c1670b added {org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@27808f31,AUTO}
+  2015-09-18 14:11:45  [main:181] - [DEBUG]  org.eclipse.jetty.websocket.server.WebSocketServerFactory@58c1670b added {org.eclipse.jetty.io.MappedByteBufferPool@6b57696f,POJO}
+  2015-09-18 14:11:45  [main:259] - [DEBUG]  com.bbcow.server.EchoHandler@51c8530f added {org.eclipse.jetty.websocket.server.WebSocketServerFactory@58c1670b,AUTO}
+  2015-09-18 14:11:45  [main:259] - [DEBUG]  org.eclipse.jetty.server.Server@a67c67e added {com.bbcow.server.EchoHandler@51c8530f,MANAGED}
+  2015-09-18 14:11:45  [main:264] - [DEBUG]  starting org.eclipse.jetty.server.Server@a67c67e
+  2015-09-18 14:11:45  [main:290] - [INFO]  jetty-9.3.2.v20150730
+  2015-09-18 14:11:45  [main:320] - [DEBUG]  starting org.eclipse.jetty.server.Server@a67c67e
+  2015-09-18 14:11:45  [main:320] - [DEBUG]  starting qtp827966648{STOPPED,8<=0<=200,i=0,q=0}
+  2015-09-18 14:11:45  [main:324] - [DEBUG]  STARTED @853ms qtp827966648{STARTED,8<=8<=200,i=5,q=0}
+  2015-09-18 14:11:45  [main:324] - [DEBUG]  starting com.bbcow.server.EchoHandler@51c8530f
+  2015-09-18 14:11:45  [main:325] - [DEBUG]  starting com.bbcow.server.EchoHandler@51c8530f
+  2015-09-18 14:11:45  [main:325] - [DEBUG]  starting org.eclipse.jetty.websocket.server.WebSocketServerFactory@58c1670b
+  2015-09-18 14:11:45  [main:327] - [DEBUG]  starting org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@27808f31
+  2015-09-18 14:11:45  [main:336] - [DEBUG]  STARTED @866ms org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@27808f31
+  2015-09-18 14:11:45  [main:337] - [DEBUG]  STARTED @867ms org.eclipse.jetty.websocket.server.WebSocketServerFactory@58c1670b
+  2015-09-18 14:11:45  [main:337] - [DEBUG]  STARTED @867ms com.bbcow.server.EchoHandler@51c8530f
+  2015-09-18 14:11:45  [main:338] - [DEBUG]  starting ServerConnector@7f13d6e{HTTP/1.1,[http/1.1]}{0.0.0.0:2014}
+  2015-09-18 14:11:45  [main:362] - [DEBUG]  ServerConnector@7f13d6e{HTTP/1.1,[http/1.1]}{0.0.0.0:2014} added {sun.nio.ch.ServerSocketChannelImpl[/0:0:0:0:0:0:0:0:2014],POJO}
+  2015-09-18 14:11:45  [main:362] - [DEBUG]  starting org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@1f554b06
+  2015-09-18 14:11:45  [main:363] - [DEBUG]  STARTED @893ms org.eclipse.jetty.util.thread.ScheduledExecutorScheduler@1f554b06
+  2015-09-18 14:11:45  [main:364] - [DEBUG]  starting HttpConnectionFactory@6c49835d[HTTP/1.1]
+  2015-09-18 14:11:45  [main:365] - [DEBUG]  STARTED @895ms HttpConnectionFactory@6c49835d[HTTP/1.1]
+  2015-09-18 14:11:45  [main:366] - [DEBUG]  starting org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@5a1c0542
+  2015-09-18 14:11:45  [main:383] - [DEBUG]  starting org.eclipse.jetty.io.ManagedSelector@70a9f84e id=0 keys=-1 selected=-1
+  2015-09-18 14:11:45  [main:493] - [DEBUG]  STARTED @1022ms org.eclipse.jetty.io.ManagedSelector@70a9f84e id=0 keys=0 selected=0
+  2015-09-18 14:11:45  [main:493] - [DEBUG]  queue org.eclipse.jetty.io.ManagedSelector@70a9f84e id=0 keys=0 selected=0
+  2015-09-18 14:11:45  [main:494] - [DEBUG]  starting org.eclipse.jetty.io.ManagedSelector@214b199c id=1 keys=-1 selected=-1
+  2015-09-18 14:11:45  [qtp827966648-14:494] - [DEBUG]  run org.eclipse.jetty.io.ManagedSelector@70a9f84e id=0 keys=0 selected=0
+  2015-09-18 14:11:45  [qtp827966648-14:495] - [DEBUG]  EPR Idle/org.eclipse.jetty.io.ManagedSelector$SelectorProducer@4cd47d08 execute
+  2015-09-18 14:11:45  [qtp827966648-14:495] - [DEBUG]  EPR Prod/org.eclipse.jetty.io.ManagedSelector$SelectorProducer@4cd47d08 produce enter
+  2015-09-18 14:11:45  [qtp827966648-14:495] - [DEBUG]  EPR Prod/org.eclipse.jetty.io.ManagedSelector$SelectorProducer@4cd47d08 producing
+  2015-09-18 14:11:45  [qtp827966648-14:496] - [DEBUG]  Selector loop waiting on select
+  2015-09-18 14:11:45  [main:498] - [DEBUG]  STARTED @1027ms org.eclipse.jetty.io.ManagedSelector@214b199c id=1 keys=0 selected=0
+  2015-09-18 14:11:45  [main:498] - [DEBUG]  queue org.eclipse.jetty.io.ManagedSelector@214b199c id=1 keys=0 selected=0
+  2015-09-18 14:11:45  [main:499] - [DEBUG]  STARTED @1029ms org.eclipse.jetty.server.ServerConnector$ServerConnectorManager@5a1c0542
+  2015-09-18 14:11:45  [qtp827966648-21:501] - [DEBUG]  run org.eclipse.jetty.io.ManagedSelector@214b199c id=1 keys=0 selected=0
+  2015-09-18 14:11:45  [qtp827966648-21:501] - [DEBUG]  EPR Idle/org.eclipse.jetty.io.ManagedSelector$SelectorProducer@59ba30e8 execute
+  2015-09-18 14:11:45  [qtp827966648-21:502] - [DEBUG]  EPR Prod/org.eclipse.jetty.io.ManagedSelector$SelectorProducer@59ba30e8 produce enter
+  2015-09-18 14:11:45  [qtp827966648-21:502] - [DEBUG]  EPR Prod/org.eclipse.jetty.io.ManagedSelector$SelectorProducer@59ba30e8 producing
+  2015-09-18 14:11:45  [qtp827966648-21:502] - [DEBUG]  Selector loop waiting on select
+  2015-09-18 14:11:45  [main:501] - [DEBUG]  ServerConnector@7f13d6e{HTTP/1.1,[http/1.1]}{0.0.0.0:2014} added {acceptor-0@240237d2,POJO}
+  2015-09-18 14:11:45  [main:503] - [DEBUG]  queue acceptor-0@240237d2
+  2015-09-18 14:11:45  [main:504] - [INFO]  Started ServerConnector@7f13d6e{HTTP/1.1,[http/1.1]}{0.0.0.0:2014}
+  2015-09-18 14:11:45  [main:505] - [DEBUG]  STARTED @1034ms ServerConnector@7f13d6e{HTTP/1.1,[http/1.1]}{0.0.0.0:2014}
+  2015-09-18 14:11:45  [main:505] - [INFO]  Started @1035ms
+  2015-09-18 14:11:45  [main:506] - [DEBUG]  STARTED @1036ms org.eclipse.jetty.server.Server@a67c67e
+  2015-09-18 14:11:45  [qtp827966648-17:514] - [DEBUG]  run acceptor-0@240237d2
+  2015-09-18 14:11:45  [main:541] - [INFO]  server star
+  

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/jsoup-1.8.3.jar" sourcepath="E:/jar包/jsoup-1.8.3-sources.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-log4j12-1.7.12.jar" sourcepath="E:/jar包/slf4j-log4j12-1.7.12-sources.jar"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.12.jar" sourcepath="E:/jar包/slf4j-api-1.7.12-sources.jar"/>
+	<classpathentry kind="lib" path="lib/guava-18.0.jar" sourcepath="E:/jar包/guava-18.0-sources.jar"/>
+	<classpathentry kind="lib" path="lib/javax-websocket-client-impl-9.3.2.v20150730.jar"/>
+	<classpathentry kind="lib" path="lib/javax-websocket-server-impl-9.3.2.v20150730.jar"/>
+	<classpathentry kind="lib" path="lib/javax.websocket-api-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/websocket-api-9.3.2.v20150730.jar"/>
+	<classpathentry kind="lib" path="lib/websocket-client-9.3.2.v20150730.jar"/>
+	<classpathentry kind="lib" path="lib/websocket-common-9.3.2.v20150730.jar"/>
+	<classpathentry kind="lib" path="lib/websocket-server-9.3.2.v20150730.jar"/>
+	<classpathentry kind="lib" path="lib/websocket-servlet-9.3.2.v20150730.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-server-9.3.2.v20150730.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-util-9.3.2.v20150730.jar"/>
+	<classpathentry kind="lib" path="lib/servlet-api-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-io-9.3.2.v20150730.jar"/>
+	<classpathentry kind="lib" path="lib/jetty-http-9.3.2.v20150730.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="lib/gson-2.2.2.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="lib/mongo-java-driver-3.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/morphia-1.0.0.jar" sourcepath="C:/Users/wanghui/.m2/repository/org/mongodb/morphia/morphia/1.0.0/morphia-1.0.0-sources.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_45">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
