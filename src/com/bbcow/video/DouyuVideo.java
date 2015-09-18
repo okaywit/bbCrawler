@@ -18,7 +18,7 @@ public class DouyuVideo extends AbstractVideoParser{
 		try {
 			Document doc = Jsoup.connect(vm.getUrl()).get();
 			Element keyword = doc.select("meta[name=keywords]").first();
-			Element category = doc.select("ul.r_else li a").first();
+			Element category = doc.select("ul.r_else li i").first();
 			Element title = doc.select("h1").first();
 			Element panel = doc.select("div.cc input.inn").get(1);
 			

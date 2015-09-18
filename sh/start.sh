@@ -1,4 +1,4 @@
 #!/bin/sh
 
-java -jar bbserver.jar /data/http/html/ &
+java -jar bbCrawler.jar /data/http/html/ &
 
