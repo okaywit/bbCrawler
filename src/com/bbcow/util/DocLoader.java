@@ -22,7 +22,6 @@ public class DocLoader {
 		try {
 			p.load(setting);
 			
-			
 			target_path = path;
 			
 		} catch (IOException e) {

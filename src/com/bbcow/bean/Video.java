@@ -15,6 +15,8 @@ public class Video {
 	private String keywords;
 	private String video_url;
 	private String host;
+	private String img;
+	private String room_id;
 	private long view_count;
 	
 	public ObjectId getId() {
@@ -64,6 +66,18 @@ public class Video {
 	}
 	public void setView_count(long view_count) {
 		this.view_count = view_count;
+	}
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
+	public String getRoom_id() {
+		return room_id;
+	}
+	public void setRoom_id(String room_id) {
+		this.room_id = room_id;
 	}
 	
 }

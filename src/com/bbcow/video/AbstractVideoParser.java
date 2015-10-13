@@ -1,11 +1,13 @@
 package com.bbcow.video;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.bson.types.ObjectId;
 import org.eclipse.jetty.websocket.api.Session;
 import org.mongodb.morphia.Key;
+import org.mongodb.morphia.query.Query;
 
 import com.bbcow.bean.ErrorVideo;
 import com.bbcow.bean.Video;
@@ -44,11 +46,14 @@ public abstract class AbstractVideoParser {
 		}
 	}
 	
-	public void dealVideoMsg(Video video){
+	public static void dealVideoMsg(Video video){
 		Key<Video> key = vd.save(video);
 		video.setId(new ObjectId(key.getId().toString()));
 		
 		HtmlTask.addTask(video);
 	}
-	
+	public static void initAllPage(){
+		List<Video> vs = vd.find().asList();
+		HtmlTask.createHistory(vs);
+	}
 }

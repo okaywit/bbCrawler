@@ -42,6 +42,16 @@ public class LongzhuVideo extends AbstractVideoParser{
 		}
 		return v;
 	}
+	public void parseHtml(Video v){
+		v.setKeywords(v.getKeywords());
+		v.setOriginal_url(v.getOriginal_url());
+		v.setTag("龙珠");
+		v.setTitle(v.getTitle());
+		v.setVideo_url("http://imgcache.qq.com/minivideo_v1/vd/res/TencentPlayerLive.swf?max_age=86400&auto=1&v="+v.getRoom_id());
+		v.setHost(HOST);
+		
+		dealVideoMsg(v);
+	}
 	
 	public static void main(String[] args) throws IOException {
 		UrlMsg vm = new UrlMsg();

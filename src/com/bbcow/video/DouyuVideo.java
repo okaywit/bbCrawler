@@ -37,6 +37,16 @@ public class DouyuVideo extends AbstractVideoParser{
 		}
 		return v;
 	}
+	public void parseHtml(Video v){
+		v.setKeywords(v.getKeywords());
+		v.setOriginal_url(v.getOriginal_url());
+		v.setTag("斗鱼");
+		v.setTitle(v.getTitle());
+		v.setVideo_url("http://staticlive.douyutv.com/common/share/play.swf?room_id="+v.getRoom_id());
+		v.setHost(HOST);
+		
+		dealVideoMsg(v);
+	}
 	
 	public static void main(String[] args) {
 		UrlMsg vm = new UrlMsg();

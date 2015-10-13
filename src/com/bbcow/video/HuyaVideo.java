@@ -37,6 +37,16 @@ public class HuyaVideo extends AbstractVideoParser{
 		}
 		return v;
 	}
+	public void parseHtml(Video v){
+		v.setKeywords(v.getKeywords());
+		v.setOriginal_url(v.getOriginal_url());
+		v.setTag("虎牙");
+		v.setTitle(v.getTitle());
+		v.setVideo_url("http://weblbs.yystatic.com/s/"+v.getRoom_id()+"/huyacoop.swf");
+		v.setHost(HOST);
+		
+		dealVideoMsg(v);
+	}
 	
 	public static void main(String[] args) {
 		UrlMsg vm = new UrlMsg();

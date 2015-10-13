@@ -23,7 +23,13 @@ public class QqVideo extends AbstractVideoParser{
 			Element keyword = doc.select("meta[name=keywords]").first();
 			if(StringUtils.endsWith(url, ".html")){
 				Element content = doc.select("li[class=list_item list_item_half current] a").first();
-				v.setVideo_url("http://static.video.qq.com/TPout.swf?vid="+content.attr("id")+"&auto=1");
+				String id = "";
+				if(content == null){
+					id = StringUtils.substring(url, url.lastIndexOf("/")+1,url.lastIndexOf(".html"));
+				}else{
+					id = content.attr("id");
+				}
+				v.setVideo_url("http://static.video.qq.com/TPout.swf?vid="+id+"&auto=1");
 			}else{
 				int startIndex = url.indexOf("vid")+4;
 				int endIndex = url.lastIndexOf("&") > startIndex ? url.lastIndexOf("&") : url.length();
@@ -51,7 +57,7 @@ public class QqVideo extends AbstractVideoParser{
 	public static void main(String[] args) {
 		//
 		UrlMsg vm = new UrlMsg();
-		vm.setUrl("http://v.qq.com/cover/g/gho5f96xq2plda3.html?vid=c0163rtbybd");
+		vm.setUrl("http://v.qq.com/cover/6/6rk0jemko5uecjh/h00157vw2oc.html");
 		QqVideo yk = new QqVideo();
 		try {
 			yk.parseHtml(vm);
