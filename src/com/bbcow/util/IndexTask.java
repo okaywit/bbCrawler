@@ -74,7 +74,7 @@ public class IndexTask {
 					}
 				}
 				sb.append("</div><div class=\"row ad\">");
-				sb.append("<script type=\"text/javascript\">var cpro_id = \"u2306082\";</script><script src=\"http://cpro.baidustatic.com/cpro/ui/c.js\" type=\"text/javascript\"></script></div><div class=\"row\">");
+				sb.append("<div class=\"hidden-xs\"><script type=\"text/javascript\">var cpro_id = \"u2306082\";</script><script src=\"http://cpro.baidustatic.com/cpro/ui/c.js\" type=\"text/javascript\"></script></div></div><div class=\"row\">");
 				for(int i = 0;i<12;i++){
 					if(longzhus.size()>0){
 						v = longzhus.get(i);
@@ -94,7 +94,7 @@ public class IndexTask {
 					}
 				}
 				sb.append("</div><div class=\"row ad\">");
-				sb.append("<script type=\"text/javascript\">var cpro_id = \"u2306082\";</script><script src=\"http://cpro.baidustatic.com/cpro/ui/c.js\" type=\"text/javascript\"></script></div><div class=\"row\">");
+				sb.append("<div class=\"hidden-xs\"><script type=\"text/javascript\">var cpro_id = \"u2306082\";</script><script src=\"http://cpro.baidustatic.com/cpro/ui/c.js\" type=\"text/javascript\"></script></div></div><div class=\"row\">");
 				for(int i = 0;i<12;i++){
 					if(huyas.size()>0){
 						v = huyas.get(i);
@@ -114,7 +114,7 @@ public class IndexTask {
 					}
 				}
 				sb.append("</div><div class=\"row ad\">");
-				sb.append("<script type=\"text/javascript\">var cpro_id = \"u2306082\";</script><script src=\"http://cpro.baidustatic.com/cpro/ui/c.js\" type=\"text/javascript\"></script></div><div class=\"row\">");
+				sb.append("<div class=\"hidden-xs\"><script type=\"text/javascript\">var cpro_id = \"u2306082\";</script><script src=\"http://cpro.baidustatic.com/cpro/ui/c.js\" type=\"text/javascript\"></script></div></div><div class=\"row\">");
 				for(int i = 0;i<12;i++){
 					if(zhanqis.size()>0){
 						/*v = zhanqis.get(i);
@@ -169,8 +169,8 @@ public class IndexTask {
 		List<Video> douyus = new LinkedList<Video>();
 		DouyuVideo yk = new DouyuVideo();
 		try {
-			String url = "http://www.douyutv.com/api/v1/live?aid=android&client_sys=android&limit=20&offset=0&time="+System.currentTimeMillis()+"&auth=4777c442babd4b0e90bac446d13df4db";
-			Response rs  = Jsoup.connect(url).execute();
+			String url = "http://www.douyutv.com/api/v1/live?aid=android&client_sys=android&limit=20&offset=0&time="+System.currentTimeMillis()+"";
+			Response rs  = Jsoup.connect(url).ignoreContentType(true).execute();
 			JsonObject object = new JsonParser().parse(rs.body()).getAsJsonObject();
 			JsonArray items = object.getAsJsonArray("data");
 			
