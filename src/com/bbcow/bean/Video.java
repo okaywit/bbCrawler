@@ -1,11 +1,20 @@
 package com.bbcow.bean;
 
+import java.util.Date;
+
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Field;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Index;
+import org.mongodb.morphia.annotations.IndexOptions;
+import org.mongodb.morphia.annotations.Indexes;
 import org.mongodb.morphia.annotations.Transient;
 
 @Entity(value="video",noClassnameStored=true)
+@Indexes({
+	@Index(fields={@Field(value="original_url")},options=@IndexOptions(unique=true)),
+})
 public class Video {
 	@Id
 	private ObjectId id;
@@ -18,6 +27,7 @@ public class Video {
 	private String img;
 	private String room_id;
 	private long view_count;
+	private Date update_time;
 	
 	public ObjectId getId() {
 		return id;
@@ -78,6 +88,12 @@ public class Video {
 	}
 	public void setRoom_id(String room_id) {
 		this.room_id = room_id;
+	}
+	public Date getUpdate_time() {
+		return update_time;
+	}
+	public void setUpdate_time(Date update_time) {
+		this.update_time = update_time;
 	}
 	
 }

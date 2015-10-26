@@ -8,12 +8,16 @@ import org.eclipse.jetty.websocket.api.annotations.OnWebSocketMessage;
 import org.eclipse.jetty.websocket.api.annotations.WebSocket;
 import org.eclipse.jetty.websocket.server.WebSocketHandler;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.bbcow.message.MessageParser;
+import com.bbcow.util.IndexTask;
 
 
 @WebSocket
 public class EchoHandler extends WebSocketHandler {
+	private static Logger logger = LoggerFactory.getLogger(EchoHandler.class);
 	@OnWebSocketClose
 	public void onClose(int statusCode, String reason) {
 		System.out.println("close");
@@ -25,13 +29,12 @@ public class EchoHandler extends WebSocketHandler {
 
 	@OnWebSocketConnect
 	public void onConnect(Session session) {
-		
-		System.out.println("connect");
+		logger.info(session.getRemoteAddress()+" online " );
 	}
 
 	@OnWebSocketMessage
 	public void onMessage(Session session,String message) {
-		MessageParser.parseMessage(session,message);
+		logger.info(session.getRemoteAddress()+" send message " + message);
 	}
 
 	@Override

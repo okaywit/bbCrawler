@@ -31,11 +31,14 @@ public class EchoBootstrap {
 		    Thread t = new Thread(new HtmlTask());
 			t.start();
 		    
+			//AbstractVideoParser.initAllPage();
+			
 		    //首页初始化任务
 		    IndexTask it = new IndexTask();
 		    SitemapTask st = new SitemapTask(); 
-			ScheduledExecutorService es = Executors.newScheduledThreadPool(1);
-			es.scheduleWithFixedDelay(it.new Task(),0, 10, TimeUnit.MINUTES);
+			ScheduledExecutorService es = Executors.newScheduledThreadPool(6);
+			es.scheduleWithFixedDelay(it.new Task(),0, 5, TimeUnit.MINUTES);
+			es.scheduleWithFixedDelay(it.new Task_2(),0, 32, TimeUnit.MINUTES);
 			es.scheduleWithFixedDelay(st.new Task(),0, 24, TimeUnit.HOURS);
 		    
 		    logger.info("server star");

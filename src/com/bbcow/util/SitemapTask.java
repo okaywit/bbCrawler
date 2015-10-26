@@ -21,6 +21,8 @@ import org.bson.types.ObjectId;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.bbcow.bean.Video;
 import com.bbcow.message.UrlMsg;
@@ -39,6 +41,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 public class SitemapTask {
+	private static Logger logger = LoggerFactory.getLogger(SitemapTask.class);
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'+00:00'") ;
 	private static String sitemap_template_content;
 
@@ -75,8 +78,8 @@ public class SitemapTask {
 			try {
 				bw = Files.newWriter(new File(DocLoader.target_path+"sitemap.xml"), Charset.forName("utf-8"));
 				bw.write(sitemap);
-			} catch (IOException e1) {
-				e1.printStackTrace();
+			} catch (Exception e1) {
+				logger.error(e1.toString());
 			} finally {
 				try {
 					bw.close();
@@ -84,7 +87,6 @@ public class SitemapTask {
 					e.printStackTrace();
 				}
 			}
-
 		}
 
 	}

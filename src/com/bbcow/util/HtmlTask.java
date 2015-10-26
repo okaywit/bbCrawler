@@ -11,16 +11,27 @@ import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
+import org.jsoup.Jsoup;
+import org.jsoup.Connection.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.bbcow.bean.Video;
+import com.bbcow.video.PandaVideo;
 import com.google.common.io.ByteStreams;
 import com.google.common.io.CharSource;
 import com.google.common.io.Files;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 public class HtmlTask implements Runnable{
+	private static Logger logger = LoggerFactory.getLogger(HtmlTask.class);
 	private static final String HTML_TEMPLATE_PATH = DocLoader.target_path + DocLoader.getString("html.template.path");
 	private static final String HTML_HISTORY_PATH = DocLoader.target_path + DocLoader.getString("html.history.path");
 	private static final String HTML_BUILD_PREFIX =  DocLoader.target_path + DocLoader.getString("html.build.prefix");
-	
+	static int i = 0;
 	private static String html_template_content ;
 	
 	static{
@@ -50,8 +61,8 @@ public class HtmlTask implements Runnable{
 			}
 			hw = Files.newWriter(new File(HTML_HISTORY_PATH), Charset.forName("utf-8"));
 			hw.write(h);
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			logger.error(e.toString());
 		} finally {
 			try {
 				hw.close();
@@ -62,29 +73,29 @@ public class HtmlTask implements Runnable{
 			
 		
 	}
-	private void createVideo(){
+	public static void createVideo(Video video){
 		BufferedWriter bw = null;
-		
 		try {
-			Iterator<Video> videos = queue.iterator();
-			while(videos.hasNext()){
-				Video video = videos.next();
-				//视频模板
-				bw = Files.newWriter(new File(HTML_BUILD_PREFIX + video.getId() + ".html"), Charset.forName("utf-8"));
-				String template = html_template_content;
-				//template = template.replace("#url", video.getVideo_url());
-				if("zhanqi.tv".equals(video.getHost())){
-					template = template.replace("#video", "<iframe class=\"embed-responsive-item\" src=\""+video.getVideo_url()+"\"></iframe>");
-				}else{
-					template = template.replace("#video", "<embed allownetworking=\"all\" allowscriptaccess=\"always\" src=\""+video.getVideo_url()+"\" quality=\"high\" bgcolor=\"#000\" wmode=\"window\" allowfullscreen=\"true\" allowFullScreenInteractive=\"true\" type=\"application/x-shockwave-flash\">");
-				}
-				template = template.replaceAll("#title", video.getTitle());
-				template = template.replace("#keywords", video.getKeywords());
-				template = template.replace("#link", video.getOriginal_url());
-				bw.write(template);
-				bw.close();
+			//视频模板
+			bw = Files.newWriter(new File(HTML_BUILD_PREFIX + video.getId() + ".html"), Charset.forName("utf-8"));
+			String template = html_template_content;
+			//template = template.replace("#url", video.getVideo_url());
+			if("zhanqi.tv".equals(video.getHost())){
+				template = template.replace("#video", "<iframe class=\"embed-responsive-item\" src=\""+video.getVideo_url()+"\"></iframe>");
+			}else{
+				template = template.replace("#video", "<embed allownetworking=\"all\" allowscriptaccess=\"always\" src=\""+video.getVideo_url()+"\" quality=\"high\" bgcolor=\"#000\" wmode=\"window\" allowfullscreen=\"true\" allowFullScreenInteractive=\"true\" type=\"application/x-shockwave-flash\">");
 			}
-		} catch (IOException e1) {
+			template = template.replaceAll("#title", video.getTitle());
+			if(video.getKeywords()!=null)
+				template = template.replaceAll("#keywords", video.getKeywords());
+			if(video.getImg()!=null)
+				template = template.replace("#img", video.getImg());
+			template = template.replace("#id", video.getId().toString());
+			template = template.replace("#link", video.getOriginal_url());
+			bw.write(template);
+			bw.close();
+			
+		} catch (Exception e1) {
 			e1.printStackTrace();
 		} finally {
 			try {
@@ -100,11 +111,13 @@ public class HtmlTask implements Runnable{
 	@Override
 	public void run() {
 		while(true){
-			if(!queue.isEmpty() && queue.size()>10){
-				createVideo();
+			try {
+				createVideo(queue.take());
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 		
 	}
-
+	
 }
