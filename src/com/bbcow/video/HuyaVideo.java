@@ -67,7 +67,7 @@ public class HuyaVideo extends AbstractVideoParser{
 				v.setTitle(item.get("liveName").getAsString());
 				v.setOriginal_url("http://huya.com/index.php?m=Live&do=onliveOther&channel="+item.get("sid").getAsString()+"&subChannel="+item.get("ssid").getAsString()+"&src=bbcow.com");
 						
-				v.setImg(e.getAsJsonObject().get("thumb").getAsString());
+				v.setImg(e.getAsJsonObject().get("thumb").getAsString()+"?imageview/0/w/280");
 				v.setView_count(e.getAsJsonObject().get("users").getAsLong());
 				v.setRoom_id(item.get("sid").getAsString()+"/"+item.get("ssid").getAsString());
 				

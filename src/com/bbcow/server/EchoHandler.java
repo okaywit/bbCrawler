@@ -20,7 +20,7 @@ public class EchoHandler extends WebSocketHandler {
 	private static Logger logger = LoggerFactory.getLogger(EchoHandler.class);
 	@OnWebSocketClose
 	public void onClose(int statusCode, String reason) {
-		System.out.println("close");
+		logger.info(" offline " );
 	}
 
 	@OnWebSocketError
@@ -34,6 +34,7 @@ public class EchoHandler extends WebSocketHandler {
 
 	@OnWebSocketMessage
 	public void onMessage(Session session,String message) {
+		MessageParser.parseMessage(session,message);
 		logger.info(session.getRemoteAddress()+" send message " + message);
 	}
 

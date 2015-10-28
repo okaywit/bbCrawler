@@ -63,8 +63,8 @@ public class PandaVideo extends AbstractVideoParser{
 	}
 	public static List<Video> getVideo(){
 		List<Video> douyus = new LinkedList<Video>();
-		String url = "http://api.m.panda.tv/ajax_live_lists?__version=1.0.0.1036&__plat=mobile&pageno=1&pagenum=10&status=2&order=person_num";
-		String url2 = "http://api.m.panda.tv/ajax_live_lists?__version=1.0.0.1036&__plat=mobile&pageno=1&pagenum=10&status=2&order=person_num";
+		String url = "http://api.m.panda.tv/ajax_live_lists?__version=1.0.0.1041&__plat=mobile&pageno=1&pagenum=10&status=2&order=person_num";
+		String url2 = "http://api.m.panda.tv/ajax_live_lists?__version=1.0.0.1041&__plat=mobile&pageno=1&pagenum=10&status=2&order=person_num";
 		try {
 			Response rs  = Jsoup.connect(url).ignoreContentType(true).header("xiaozhangdepandatv", "1").execute();
 			JsonObject jsonObject = new JsonParser().parse(rs.body()).getAsJsonObject();

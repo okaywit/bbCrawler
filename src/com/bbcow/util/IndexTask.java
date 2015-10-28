@@ -2,7 +2,6 @@ package com.bbcow.util;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
@@ -16,7 +15,6 @@ import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bbcow.EchoBootstrap;
 import com.bbcow.bean.Video;
 import com.bbcow.video.DouyuVideo;
 import com.bbcow.video.HuyaVideo;
@@ -52,13 +50,13 @@ public class IndexTask {
 				byte[] bs = ByteStreams.toByteArray(is);
 				
 				String template = new String(bs);
-				template = template.replaceFirst("#row", getIndex(lvs));
+				template = template.replaceFirst("#row", getIndex(lvs,true));
 				template = template.replaceFirst("#ad", getAd());
 				
 				hw = Files.newWriter(new File(HTML_INDEX_PATH), Charset.forName("utf-8"));
 				hw.write(template);
 			} catch (Exception e) {
-				logger.error(e.toString());
+				logger.error("indexTask",e);
 			} finally {
 				try {
 					is.close();
@@ -83,12 +81,12 @@ public class IndexTask {
 				byte[] bs = ByteStreams.toByteArray(is);
 				template_douyu = template_longzhu = template_zhanqi = template_panda = template_huya = new String(bs);
 			} catch (Exception e1) {
-				logger.error(e1.toString());
+				logger.error("indexTask",e1);
 			} finally{
 				try {
 					is.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error("indexTask",e);
 				}
 			}
 			
@@ -107,24 +105,21 @@ public class IndexTask {
 		BufferedWriter hw = null;
 		for(int i = 0; i<6 ; i++){
 			try {
-				template = template.replaceFirst("#row", getIndex(videos));
+				template = template.replaceFirst("#row", getIndex(videos,false));
 				template = template.replaceFirst("#ad", getAd());
 				template = template.replaceAll("#webname", name);
 				template = template.replaceAll("#weburl", url);
 				//template = template.replaceAll("#webimg", img);
 				hw = Files.newWriter(new File(path), Charset.forName("utf-8"));
 				hw.write(template);
-			} catch (FileNotFoundException e) {
+			}  catch (Exception e) {
 				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}  catch (IndexOutOfBoundsException e) {
-				e.printStackTrace();
+				logger.error("indexTask",e);
 			} finally {
 				try {
 					hw.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error("indexTask",e);
 				}
 			}
 		}
@@ -133,13 +128,15 @@ public class IndexTask {
 		String ad_template = "<div class=\"hidden-xs\"><script type=\"text/javascript\">var cpro_id = \"u2306082\";</script><script src=\"http://cpro.baidustatic.com/cpro/ui/c.js\" type=\"text/javascript\"></script></div>";
 		return ad_template;
 	}
-	public static String getIndex(List<Video> videos){
-		Collections.sort(videos, new Comparator<Video>() {
-			@Override
-			public int compare(Video o1, Video o2) {
-				return (int)(o2.getView_count() - o1.getView_count());
-			}
-		});
+	public static String getIndex(List<Video> videos,boolean sort){
+		if(sort){
+			Collections.sort(videos, new Comparator<Video>() {
+				@Override
+				public int compare(Video o1, Video o2) {
+					return (int)(o2.getView_count() - o1.getView_count());
+				}
+			});
+		}
 		int rows = videos.size() / 6;
 		StringBuffer sb = new StringBuffer("");
 		for(int i=0 ; i<rows ; i++){
@@ -153,7 +150,7 @@ public class IndexTask {
 					sb.append("<a href=\""+ v.getOriginal_url()+"\"  target=\"_blank\" role=\"link\">");
 				}
 				sb.append("<div class=\"rounded\">")
-					.append("<img src=\""+v.getImg()+"\" height='110px' alt=\""+v.getKeywords()+"\" class=\"col-md-12\">")
+					.append("<img src=\""+v.getImg()+"\" height='110px' alt=\""+v.getKeywords().replace("$", "\\$")+"\" class=\"col-md-12\">")
 					.append("<label>"+v.getTitle()+"</label>")
 					.append("</div></a></div>");
 			}

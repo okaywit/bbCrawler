@@ -25,6 +25,7 @@ public class Video {
 	private String video_url;
 	private String host;
 	private String img;
+	private String original_img;
 	private String room_id;
 	private long view_count;
 	private Date update_time;
@@ -94,6 +95,12 @@ public class Video {
 	}
 	public void setUpdate_time(Date update_time) {
 		this.update_time = update_time;
+	}
+	public String getOriginal_img() {
+		return original_img;
+	}
+	public void setOriginal_img(String original_img) {
+		this.original_img = original_img;
 	}
 	
 }
