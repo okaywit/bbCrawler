@@ -91,7 +91,8 @@ public class HtmlTask implements Runnable{
 			if(video.getImg()!=null)
 				template = template.replace("#img", video.getImg());
 			template = template.replace("#id", video.getId().toString());
-			template = template.replace("#link", video.getOriginal_url());
+			template = template.replaceAll("#link", video.getOriginal_url());
+			template = template.replace("#tag", video.getTag());
 			bw.write(template);
 			bw.close();
 			

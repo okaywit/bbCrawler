@@ -81,7 +81,6 @@ public abstract class AbstractVideoParser {
 				imgs.add(digest);
 				
 			} catch (Exception e) {
-				e.printStackTrace();
 				logger.error("video : " + e);
 			}
 		}

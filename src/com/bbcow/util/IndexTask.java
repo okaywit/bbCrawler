@@ -35,6 +35,7 @@ public class IndexTask {
 	public class Task implements Runnable{
 		@Override
 		public void run() {
+			logger.warn("index start " + System.currentTimeMillis());
 			//记录页
 			InputStream is = this.getClass().getResourceAsStream("/index_template.html");
 			BufferedWriter hw = null;
@@ -66,6 +67,7 @@ public class IndexTask {
 				}
 			}
 
+			logger.warn("index end " + System.currentTimeMillis());
 		    //初始化历史页面
 		    //AbstractVideoParser.initHistoryPage();
 		}
@@ -74,6 +76,7 @@ public class IndexTask {
 	public class Task_2 implements Runnable{
 		@Override
 		public void run() {
+			logger.warn("index 2 start " + System.currentTimeMillis());
 			//记录页
 			InputStream is = this.getClass().getResourceAsStream("/web_template.html");
 			String template_douyu = null,template_longzhu = null,template_zhanqi = null,template_panda = null,template_huya = null;
@@ -86,22 +89,23 @@ public class IndexTask {
 				try {
 					is.close();
 				} catch (IOException e) {
-					logger.error("indexTask",e);
+					logger.error("indexTask_2",e);
 				}
 			}
 			
-			initEvetyWeb(HTML_DOUYU_PATH ,"斗鱼直播",DocLoader.getString("html.douyu.path"),"", template_douyu , DouyuVideo.getDbVideo());
-			initEvetyWeb(HTML_LONGZHU_PATH ,"龙珠直播",DocLoader.getString("html.longzhu.path"),"", template_longzhu , LongzhuVideo.getDbVideo());
-			initEvetyWeb(HTML_ZHANQI_PATH ,"战旗直播",DocLoader.getString("html.zhanqi.path"),"", template_zhanqi , ZhanqiVideo.getDbVideo());
-			initEvetyWeb(HTML_PANDA_PATH ,"熊猫tv直播",DocLoader.getString("html.panda.path"),"", template_panda , PandaVideo.getDbVideo());
-			initEvetyWeb(HTML_HUYA_PATH ,"虎牙直播",DocLoader.getString("html.huya.path"),"", template_huya , HuyaVideo.getDbVideo());
-			
+			initEvetyWeb(HTML_DOUYU_PATH ,"斗鱼直播",DocLoader.getString("html.douyu.path"),"douyutv.com", template_douyu , DouyuVideo.getDbVideo());
+			initEvetyWeb(HTML_LONGZHU_PATH ,"龙珠直播",DocLoader.getString("html.longzhu.path"),"longzhu.com", template_longzhu , LongzhuVideo.getDbVideo());
+			initEvetyWeb(HTML_ZHANQI_PATH ,"战旗直播",DocLoader.getString("html.zhanqi.path"),"zhanqi.tv", template_zhanqi , ZhanqiVideo.getDbVideo());
+			initEvetyWeb(HTML_PANDA_PATH ,"熊猫tv直播",DocLoader.getString("html.panda.path"),"panda.tv", template_panda , PandaVideo.getDbVideo());
+			initEvetyWeb(HTML_HUYA_PATH ,"虎牙直播",DocLoader.getString("html.huya.path"),"huya.com", template_huya , HuyaVideo.getDbVideo());
+
+			logger.warn("index 2 end " + System.currentTimeMillis());
 			//DocLoader.target_path+"douyu.html"
 			
 		}
 		
 	}
-	public static void initEvetyWeb(String path,String name,String url,String img,String template,List<Video> videos){
+	public static void initEvetyWeb(String path,String name,String url,String host,String template,List<Video> videos){
 		BufferedWriter hw = null;
 		for(int i = 0; i<6 ; i++){
 			try {
@@ -109,6 +113,7 @@ public class IndexTask {
 				template = template.replaceFirst("#ad", getAd());
 				template = template.replaceAll("#webname", name);
 				template = template.replaceAll("#weburl", url);
+				template = template.replaceAll("#host", host);
 				//template = template.replaceAll("#webimg", img);
 				hw = Files.newWriter(new File(path), Charset.forName("utf-8"));
 				hw.write(template);
@@ -151,7 +156,7 @@ public class IndexTask {
 				}
 				sb.append("<div class=\"rounded\">")
 					.append("<img src=\""+v.getImg()+"\" height='110px' alt=\""+v.getKeywords().replace("$", "\\$")+"\" class=\"col-md-12\">")
-					.append("<label>"+v.getTitle()+"</label>")
+					.append("<label>"+v.getTitle().replace("$", "\\$")+"</label>")
 					.append("</div></a></div>");
 			}
 			sb.append("</div>");
