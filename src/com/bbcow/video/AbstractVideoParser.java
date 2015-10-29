@@ -1,6 +1,5 @@
 package com.bbcow.video;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +28,7 @@ import com.bbcow.util.BusException;
 import com.bbcow.util.DocLoader;
 import com.bbcow.util.HtmlTask;
 import com.bbcow.util.MD5;
-import com.google.common.io.Files;
+import com.bbcow.util.Qiniu;
 
 public abstract class AbstractVideoParser {
 	protected String HOST;
@@ -77,7 +76,8 @@ public abstract class AbstractVideoParser {
 			try {
 				Response res = con.ignoreContentType(true).execute();
 				byte[] bs = res.bodyAsBytes();
-				Files.write(bs, new File(DocLoader.target_path+"img/"+video.getId()+".jpg"));
+				Qiniu.upload(bs, video.getId().toString());
+				//Files.write(bs, new File(DocLoader.target_path+"img/"+video.getId()+".jpg"));
 				imgs.add(digest);
 				
 			} catch (Exception e) {

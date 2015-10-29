@@ -26,7 +26,8 @@ public class VideoDao extends BasicDAO<Video, ObjectId>{
 			ObjectId id = ObjectId.get();
 			entity.setId(id);
 			entity.setUpdate_time(new Date());
-			entity.setImg("/img/"+id.toString()+".jpg");
+			//entity.setImg("/img/"+id.toString()+".jpg");
+			entity.setImg("http://image.bbcow.com/"+id.toString()+".jpg");
 			return super.save(entity);
 		}else{
 			Key<Video> v =  vs.get(0);
@@ -37,7 +38,8 @@ public class VideoDao extends BasicDAO<Video, ObjectId>{
 				ops.inc("view_count");
 			}
 			if(entity.getImg()!=null){
-				entity.setImg("/img/"+v.getId().toString()+".jpg");
+				//entity.setImg("/img/"+v.getId().toString()+".jpg");
+				entity.setImg("http://image.bbcow.com/"+v.getId().toString()+".jpg");
 				ops.set("img", entity.getImg());
 				ops.set("original_img", entity.getOriginal_img());
 			}

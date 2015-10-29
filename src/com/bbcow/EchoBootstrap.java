@@ -38,7 +38,7 @@ public class EchoBootstrap {
 		    SitemapTask st = new SitemapTask(); 
 			ScheduledExecutorService es = Executors.newScheduledThreadPool(6);
 			es.scheduleWithFixedDelay(it.new Task(),0, 5, TimeUnit.MINUTES);
-			es.scheduleWithFixedDelay(it.new Task_2(),0, 7, TimeUnit.MINUTES);
+			es.scheduleWithFixedDelay(it.new Task_2(),1, 6, TimeUnit.MINUTES);
 			es.scheduleWithFixedDelay(st.new Task(),0, 24, TimeUnit.HOURS);
 		    
 		    logger.info("server star");
