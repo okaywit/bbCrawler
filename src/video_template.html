@@ -15,17 +15,19 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <link rel="stylesheet" href="../css/normalize.css">
-    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="../js/vendor/modernizr-2.6.2.min.js"></script>
     <script type="application/ld+json">
         	{
 				"@context": "http://schema.org",
 				"@type": "VideoObject",
-				"name" : "#title",
-				"description":"#keywords",
-				"url": "http://www.bbcow.com/video/#id.html",
-				"image":"#img"
+				"name" : "#title | #tag - 一零社",
+				"description":"#title的直播间，一零社将为您带来#title第一视角的精彩直播。网址：#link",
+				"url": "http://www.bbcow.com/video/#uri",
+				"thumbnailUrl":"#img",
+				"uploadDate":"#date"
 			}
         
 	</script>
@@ -34,84 +36,227 @@
 <!--[if lt IE 7]>
 <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
 <![endif]-->
-	<header id="HOME" style="background-position: 50% -125px;">
-		<section>
-			<div class="section_overlay">
-				<nav class="navbar navbar-default navbar-fixed-top">
-				  <div class="container">
-					<!-- Brand and toggle get grouped for better mobile display -->
-					<div class="navbar-header">
-					  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					  </button>
-					  <a class="navbar-brand" href="#">#title - 一零社</a>
-					</div>
-
-					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-					  <ul class="nav navbar-nav navbar-right">
-						<li><a href="http://www.bbcow.com">首页</a></li>
-						<li><a href="/douyu.html">斗鱼直播</a></li>
-						<li><a href="/longzhu.html">龙珠直播</a></li>
-						<li><a href="/zhanqi.html">战旗直播</a></li>
-						<li><a href="/panda.html">熊猫tv直播</a></li>
-						<li><a href="/huya.html">虎牙直播</a></li>
-						<li><a href="/index2.html">双屏页面</a></li>
-						<li><a href="/index3.html">三屏页面</a></li>
-					  </ul>
-					</div><!-- /.navbar-collapse -->
-				  </div><!-- /.container -->
-				</nav> 
-
+	<nav class="navbar navbar-default navbar-fixed-top headroom headroom--pinned headroom--top" role="navigation">
+		  <div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+			  <a class="navbar-brand" href="/">一零社 - 多屏直播平台</a>
 			</div>
-		</section>
-	</header>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav navbar-left">
+				<li><a href="/douyu.html">斗鱼直播</a></li>
+				<li><a href="/longzhu.html">龙珠直播</a></li>
+				<li><a href="/zhanqi.html">战旗直播</a></li>
+				<li><a href="/panda.html">熊猫tv直播</a></li>
+				<li><a href="/huya.html">虎牙直播</a></li>
+			  </ul>
+			  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+				  <ul class="nav navbar-nav navbar-right">
+					<li><a href="/index2.html">双屏页面</a></li>
+					<li><a href="/index3.html">三屏页面</a></li>
+				  </ul>
+				</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container -->
+		</div>
+	</nav> 
 <!-- Add your site or application content here -->
-	<div class="container">
+	
+	<div class="container-fluid">
 	    <div class="row">
-		    <div class="embed-responsive embed-responsive-16by9">
-		    	#video
-				<!--embed allownetworking="all" allowscriptaccess="always" src="" quality="high" bgcolor="#000" wmode="window" allowfullscreen="true" allowFullScreenInteractive="true" type="application/x-shockwave-flash"-->
-		        <!--iframe class="embed-responsive-item" src=""></iframe-->
-		    </div>
+			<div class="col-md-9" id="left_column">
+				<div id="video_left">
+					<div id="video_container" class="fitvid">
+						#video
+						<!--embed allownetworking="all" allowscriptaccess="always" src="" quality="high" bgcolor="#000" wmode="window" allowfullscreen="true" allowFullScreenInteractive="true" type="application/x-shockwave-flash"-->
+		        		<!--iframe class="embed-responsive-item" src=""></iframe-->
+					</div>
+					<div id="left_content" class="fitvid">
+						<h3 class="video_title">
+							#title							
+							<span class="glyphicon glyphicon-eye-open view-count" aria-hidden="true">#count</span>
+						</h3>
+						<div id="video_title">
+							<div class="container">
+								<span class="label" style="background:#DB1D1B">正在观看:</span> <h1>#title</h1>
+								<div id="video_options" class="">
+									<div id="" class="btn">
+										<a href="/index2.html?url=#link" class="btn btn-link" role="button">双屏观看</a>
+									</div>
+									<div id="dim_mode" class="btn">
+										<a href="/index3.html?url=#link" class="btn btn-link" role="button">三屏观看</a>
+									</div>
+									<div id="dim_mode" class="btn">
+										<a href="#link" class="btn btn-link" role="button">原址观看</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="video-details-container">
+							<p>#keywords</p>
+						</div>
+						<h2 id="tags">Tags: 
+							<span>#tag</span>
+						</h2>
+						<div class="">
+							<script type="text/javascript">
+								/*580*90 创建于 2015-10-31*/
+								var cpro_id = "u2379021";
+							</script>
+							<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+						</div>
+						<div id="comments">
+							<div id="disqus_thread">
+								<script type="text/javascript">
+									/* * * CONFIGURATION VARIABLES * * */
+									var disqus_shortname = 'bbcow';
+									
+									/* * * DON'T EDIT BELOW THIS LINE * * */
+									(function() {
+										var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+										dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+										(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+									})();
+								</script>
+								<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3" id="right_column" style="margin-left:0px; padding-left:0px;">
+				<div id="video_right">
+					<div id="video_sidebar">
+						<h3>推荐视频：</h3>
+						<div class="row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<article class="block">
+									<a class="block-thumbnail" href="#link0">
+										<span class="play-button-small"></span>
+										<img src="#img0">
+									</a>
+								</article>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="details">
+									<h2><a href="#link0">#title0</a></h2>
+									<small>#count0</small>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<article class="block">
+									<a class="block-thumbnail" href="#link1">
+										<span class="play-button-small"></span>
+										<img src="#img1">
+									</a>
+								</article>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="details">
+									<h2><a href="#link1">#title1</a></h2>
+									<small>#count1</small>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<article class="block">
+									<a class="block-thumbnail" href="#link2">
+										<span class="play-button-small"></span>
+										<img src="#img2">
+									</a>
+								</article>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="details">
+									<h2><a href="#link2">#title2</a></h2>
+									<small>#count2</small>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<article class="block">
+									<a class="block-thumbnail" href="#link3">
+										<span class="play-button-small"></span>
+										<img src="#img3">
+									</a>
+								</article>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="details">
+									<h2><a href="#link3">#title3</a></h2>
+									<small>#count3</small>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<article class="block">
+									<a class="block-thumbnail" href="#link4">
+										<span class="play-button-small"></span>
+										<img src="#img4">
+									</a>
+								</article>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-12">
+								<div class="details">
+									<h2><a href="#link4">#title4</a></h2>
+									<small>#count4</small>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 	    </div>
-	    <div class="row">
-	    	<div class="col-sm-12 col-md-12">
-	    		<h1>#keywords</h1>
-	    		<p>
-		    		<a href="/index2.html?url=#link" class="btn btn-link" role="button">双屏观看</a> 
-		    		<a href="/index3.html?url=#link" class="btn btn-link" role="button">三屏观看</a>
-		    		<a href="#link" class="btn btn-link" role="button">原址观看</a>
-				</p>
-	    	</div>
-	    </div>
-	    <div class="row">
-	    	<div class="hidden-xs">
-			    <script type="text/javascript">
-			        /*测试*/
-			        var cpro_id = "u2306082";
-			    </script>
-			    <script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
-	    	</div>
-	    </div>
-		<div id="disqus_thread"></div>
-			<script type="text/javascript">
-				/* * * CONFIGURATION VARIABLES * * */
-				var disqus_shortname = 'bbcow';
+	</div>
+	<div class="bottom_bar">
+		<div class="container">
+			<div class="notification">
+				<h1>一零社，一站式聚合斗鱼、龙珠、虎牙、战旗、熊猫tv直播视频网，提供高清、流畅的视频、活动、赛事直播服务，内容丰富，带给你不一样的视听体验，尽在一零。</h1>
+			</div>
+			<div class="social">
 				
-				/* * * DON'T EDIT BELOW THIS LINE * * */
-				(function() {
-					var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-					dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-					(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-				})();
-			</script>
-			<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+			</div>
 		</div>
 	</div>
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2">
+					<a href="/" class="logo"><img src="/logo.png"></a>
+					<p>一零社 - 多屏直播平台</p>
+					<div class="clear"></div>
+				</div>
+				<div class="col-md-1"></div>
+				<div class="col-md-3">
+					<h4>直播网站</h4>
+					<ul>
+						<li><a href="/douyu.html">斗鱼直播</a></li>
+						<li><a href="/douyu.html">龙珠直播</a></li>
+						<li><a href="/douyu.html">战旗直播</a></li>
+						<li><a href="/douyu.html">熊猫直播</a></li>
+						<li><a href="/douyu.html">虎牙直播</a></li>
+					</ul>
+				</div>
+				<div class="col-md-3">
+					<h4>多屏观看</h4>
+					<ul>
+						<li><a href="/index2.html">双屏</a></li>
+						<li><a href="/index3.html">三屏</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<hr>
+			<p class="copyright">Copyright © 2015 一零社</p>
+
+		</div>
+	</footer>
 <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="../js/plugins.js"></script>

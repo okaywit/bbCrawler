@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.bbcow.message.MessageParser;
-import com.bbcow.util.IndexTask;
+import com.bbcow.task.IndexTask;
 
 
 @WebSocket

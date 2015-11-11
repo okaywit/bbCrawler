@@ -1,6 +1,8 @@
 package com.bbcow.video;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -99,10 +101,13 @@ public class PandaVideo extends AbstractVideoParser{
 				}else{
 					v.setRoom_id(room.get("room_key").getAsString()+"&plflag=2_3");
 				}*/
-				
-				parseHtml(v);
-				
+				v.setUri("pa_"+room.get("id").getAsString()+".html");
+				v.setUpdate_time(new Date());
 				douyus.add(v);
+			}
+			tops.put(HOST,new ArrayList<Video>(douyus.subList(0, 5)));
+			for(Video v : douyus){
+				parseHtml(v);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

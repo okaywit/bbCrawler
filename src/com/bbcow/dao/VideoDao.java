@@ -49,6 +49,8 @@ public class VideoDao extends BasicDAO<Video, ObjectId>{
 				ops.set("title", entity.getTitle());
 			if(entity.getKeywords()!=null)
 				ops.set("keywords", entity.getKeywords());
+			if(entity.getUri()!=null)
+				ops.set("uri", entity.getUri());
 			ops.set("update_time", new Date());
 			super.update(query, ops);
 			return v;

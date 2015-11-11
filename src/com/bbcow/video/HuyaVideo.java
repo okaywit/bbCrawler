@@ -1,6 +1,8 @@
 package com.bbcow.video;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -70,10 +72,16 @@ public class HuyaVideo extends AbstractVideoParser{
 				v.setImg(e.getAsJsonObject().get("thumb").getAsString()+"?imageview/0/w/280");
 				v.setView_count(e.getAsJsonObject().get("users").getAsLong());
 				v.setRoom_id(item.get("sid").getAsString()+"/"+item.get("ssid").getAsString());
-				
-				parseHtml(v);
+				v.setUri("hy_"+item.get("liveUid").getAsString()+".html");
+				v.setUpdate_time(new Date());
 				
 				douyus.add(v);
+			}
+			for(int i =0 ; i<5;i++){
+				tops.put(HOST,new ArrayList<Video>(douyus.subList(0, 5)));
+			}
+			for(Video v : douyus){
+				parseHtml(v);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

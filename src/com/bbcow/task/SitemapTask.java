@@ -1,4 +1,4 @@
-package com.bbcow.util;
+package com.bbcow.task;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,6 +26,7 @@ import org.slf4j.LoggerFactory;
 
 import com.bbcow.bean.Video;
 import com.bbcow.message.UrlMsg;
+import com.bbcow.util.DocLoader;
 import com.bbcow.video.AbstractVideoParser;
 import com.bbcow.video.DouyuVideo;
 import com.bbcow.video.HuyaVideo;
@@ -46,7 +47,7 @@ public class SitemapTask {
 	private static String sitemap_template_content;
 
 	static {
-		InputStream is = HtmlTask.class
+		InputStream is = VideoTask.class
 				.getResourceAsStream("/sitemap_template.xml");
 		try {
 			byte[] bs = ByteStreams.toByteArray(is);

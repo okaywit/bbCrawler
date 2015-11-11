@@ -15,17 +15,10 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/style.css">
 		<style>
-			label{
-				white-space:nowrap; 
-				text-overflow:ellipsis; 
-				-o-text-overflow:ellipsis; 
-				overflow: hidden; 
-				margin-bottom : 0px;
-				margin-top: 5px;
-			}
 
 		</style>
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
@@ -33,70 +26,106 @@
         	{
 				"@context": "http://schema.org",
 				"@type": "WebSite",
-				"name" : "一零社"
+				"name" : "一零社",
 				"url": "http://www.bbcow.com/",
 				"image":"http://www.bbcow.com/logo.png",
-
 				"video" : [
 					{
 						"@type": "VideoObject",
 						"description": "英雄联盟S5世界总决赛",
     					"name": "S5总决赛直播",
-    					"thumbnail": "http://www.bbcow.com/logo.png",
-						"url": "http://www.bbcow.com/video/5611edaacd86ad1b10a715c5.html"
+    					"thumbnailUrl": "http://www.bbcow.com/logo.png",
+						"url": "http://www.bbcow.com/video/5611edaacd86ad1b10a715c5.html",
+						"uploadDate":"#date"
 					}
 				]
 			}
         
         </script>
     </head>
-    <body>
-		<header id="HOME" style="background-position: 50% -125px;">
-			<section>
-				<div class="section_overlay">
-					<nav class="navbar navbar-inverse navbar-fixed-top">
-					  <div class="container">
-						<!-- Brand and toggle get grouped for better mobile display -->
-						<div class="navbar-header">
-						  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							<span class="sr-only">一零</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						  </button>
-						  <a class="navbar-brand" href="/">一零社 - 多屏直播平台</a>
-						</div>
+    <body class="home">
+		<nav class="navbar navbar-default navbar-static-top headroom headroom--not-top headroom--pinned" role="navigation">
+		  <div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+			 
+			  <a class="navbar-brand" href="/">一零社 - 多屏直播平台</a>
+			</div>
 
-						<!-- Collect the nav links, forms, and other content for toggling -->
-						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						  <ul class="nav navbar-nav navbar-right">
-							<li><a href="/douyu.html">斗鱼直播</a></li>
-							<li><a href="/longzhu.html">龙珠直播</a></li>
-							<li><a href="/zhanqi.html">战旗直播</a></li>
-							<li><a href="/panda.html">熊猫tv直播</a></li>
-							<li><a href="/huya.html">虎牙直播</a></li>
-							<li><a href="/index2.html">双屏页面</a></li>
-							<li><a href="/index3.html">三屏页面</a></li>
-						  </ul>
-						</div><!-- /.navbar-collapse -->
-					  </div><!-- /.container -->
-					</nav> 
-
-				</div>
-			</section>
-		</header>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			  <ul class="nav navbar-nav navbar-left">
+				<li><a href="/douyu.html">斗鱼直播</a></li>
+				<li><a href="/longzhu.html">龙珠直播</a></li>
+				<li><a href="/zhanqi.html">战旗直播</a></li>
+				<li><a href="/panda.html">熊猫tv直播</a></li>
+				<li><a href="/huya.html">虎牙直播</a></li>
+			  </ul>
+			  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+				  <ul class="nav navbar-nav navbar-right">
+					<li><a href="/index2.html">双屏页面</a></li>
+					<li><a href="/index3.html">三屏页面</a></li>
+				  </ul>
+			</div><!-- /.navbar-collapse -->
+		  </div><!-- /.container -->
+		  </div>
+		</nav> 
 	
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
         <!-- Add your site or application content here -->
         <div class="container-fluid">
+        	<div>
 			#row
+			</div>
         </div>
         <div class="container">
 			#ad
         </div>
+		<div class="bottom_bar">
+			<div class="container">
+				<div class="notification">
+					<h1>一零社，一站式聚合斗鱼、龙珠、虎牙、战旗、熊猫tv直播视频网，提供高清、流畅的视频、活动、赛事直播服务，内容丰富，带给你不一样的视听体验，尽在一零。</h1>
+				</div>
+				<div class="social">
+					
+				</div>
+			</div>
+		</div>
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2">
+						<a href="/" class="logo"><img src="/logo.png"></a>
+						<p>一零社 - 多屏直播平台</p>
+						<div class="clear"></div>
+					</div>
+					<div class="col-md-1"></div>
+					<div class="col-md-3">
+						<h4>直播网站</h4>
+						<ul>
+							<li><a href="/douyu.html">斗鱼直播</a></li>
+							<li><a href="/douyu.html">龙珠直播</a></li>
+							<li><a href="/douyu.html">战旗直播</a></li>
+							<li><a href="/douyu.html">熊猫直播</a></li>
+							<li><a href="/douyu.html">虎牙直播</a></li>
+						</ul>
+					</div>
+					<div class="col-md-3">
+						<h4>多屏观看</h4>
+						<ul>
+							<li><a href="/index2.html">双屏</a></li>
+							<li><a href="/index3.html">三屏</a></li>
+						</ul>
+					</div>
+				</div>
 
+				<hr>
+				<p class="copyright">Copyright © 2015 一零社</p>
+
+			</div>
+		</footer>
         <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
         <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="js/plugins.js"></script>

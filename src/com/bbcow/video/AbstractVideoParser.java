@@ -1,5 +1,6 @@
 package com.bbcow.video;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +13,6 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.Connection.Response;
 import org.mongodb.morphia.Key;
-import org.mongodb.morphia.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,13 +22,12 @@ import com.bbcow.dao.ErrorVideoDao;
 import com.bbcow.dao.VideoDao;
 import com.bbcow.db.MongoDB;
 import com.bbcow.message.UrlMsg;
-import com.bbcow.test.TestImage;
-import com.bbcow.util.BaiduPing;
+import com.bbcow.task.QiniuTask;
+import com.bbcow.task.VideoTask;
 import com.bbcow.util.BusException;
 import com.bbcow.util.DocLoader;
-import com.bbcow.util.HtmlTask;
 import com.bbcow.util.MD5;
-import com.bbcow.util.Qiniu;
+import com.google.common.io.Files;
 
 public abstract class AbstractVideoParser {
 	protected String HOST;
@@ -36,7 +35,7 @@ public abstract class AbstractVideoParser {
 	protected static VideoDao vd = new VideoDao(MongoDB.db());
 	private static ErrorVideoDao evd = new ErrorVideoDao(MongoDB.db());
 	protected static List<String> imgs = new ArrayList<String>();
-	protected static Map<String,String> imgMap = new HashMap<String, String>();
+	public static Map<String,List<Video>> tops = new HashMap<String, List<Video>>();
 	public abstract Video parseHtml(UrlMsg vm) throws BusException;
 	
 	public void toParse(Session session,UrlMsg vm){
@@ -63,7 +62,10 @@ public abstract class AbstractVideoParser {
 	 * @param video
 	 */
 	protected static void dealImg(Video video) {
-		String digest = MD5.encode(video.getOriginal_img());
+		
+		QiniuTask.imgMap.put(video.getId(), video.getOriginal_img());
+		
+		/*String digest = MD5.encode(video.getOriginal_img());
 		boolean save_flag = true;
 		for(String img : imgs){
 			if(img.equals(digest)){
@@ -76,21 +78,17 @@ public abstract class AbstractVideoParser {
 			try {
 				Response res = con.ignoreContentType(true).execute();
 				byte[] bs = res.bodyAsBytes();
-				Qiniu.upload(bs, video.getId().toString());
-				//Files.write(bs, new File(DocLoader.target_path+"img/"+video.getId()+".jpg"));
+				//Qiniu.upload(bs, video.getId().toString());
+				Files.write(bs, new File(DocLoader.target_path+"img/"+video.getId()+".jpg"));
 				imgs.add(digest);
 				
 			} catch (Exception e) {
 				logger.error("video : " + e);
 			}
-		}
+		}*/
 				
 	}
 
-	public static void saveVideoMsg(Video video){
-		Key<Video> key = vd.save(video);
-		video.setId(new ObjectId(key.getId().toString()));
-	}
 	public static void dealVideoMsg(Video video){
 		video.setOriginal_img(video.getImg());
 		Key<Video> key = vd.save(video);
@@ -98,19 +96,18 @@ public abstract class AbstractVideoParser {
 		
 		dealImg(video);
 		
-		BaiduPing.site("/"+video.getId()+".html");
-		HtmlTask.addTask(video);
+		VideoTask.addTask(video);
 	}
 	public static void initHistoryPage(){
 		List<Video> vs = vd.find().asList();
-		HtmlTask.createHistory(vs);
+		VideoTask.createHistory(vs);
 	}
 	public static void initAllPage(){
 		List<Video> vs = vd.find().asList();
 		System.out.println(vs.size());
 		//HtmlTask.createHistory(vs);
 		for(Video v : vs){
-			HtmlTask.addTask(v);
+			VideoTask.addTask(v);
 		}
 	}
 }

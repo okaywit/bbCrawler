@@ -28,6 +28,7 @@ public class Video {
 	private String original_img;
 	private String room_id;
 	private long view_count;
+	private String uri;
 	private Date update_time;
 	
 	public ObjectId getId() {
@@ -101,6 +102,12 @@ public class Video {
 	}
 	public void setOriginal_img(String original_img) {
 		this.original_img = original_img;
+	}
+	public String getUri() {
+		return uri;
+	}
+	public void setUri(String uri) {
+		this.uri = uri;
 	}
 	
 }

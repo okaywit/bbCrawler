@@ -1,10 +1,12 @@
-package com.bbcow.util;
+package com.bbcow.task;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -16,6 +18,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.bbcow.bean.Video;
+import com.bbcow.util.BaiduPing;
+import com.bbcow.util.DocLoader;
+import com.bbcow.video.AbstractVideoParser;
 import com.bbcow.video.DouyuVideo;
 import com.bbcow.video.HuyaVideo;
 import com.bbcow.video.LongzhuVideo;
@@ -52,8 +57,10 @@ public class IndexTask {
 				
 				String template = new String(bs);
 				template = template.replaceFirst("#row", getIndex(lvs,true));
-				template = template.replaceFirst("#ad", getAd());
 				
+				template = template.replaceFirst("#ad", getAd());
+				ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
+				template = template.replaceFirst("#date", now.toString());
 				hw = Files.newWriter(new File(HTML_INDEX_PATH), Charset.forName("utf-8"));
 				hw.write(template);
 			} catch (Exception e) {
@@ -107,26 +114,27 @@ public class IndexTask {
 	}
 	public static void initEvetyWeb(String path,String name,String url,String host,String template,List<Video> videos){
 		BufferedWriter hw = null;
-		for(int i = 0; i<6 ; i++){
+		try {
+			template = template.replaceFirst("#row", getIndex(videos,false));
+			template = template.replaceFirst("#ad", getAd());
+			template = template.replaceAll("#webname", name);
+			template = template.replaceAll("#weburl", url);
+			template = template.replaceAll("#host", host);
+			//template = template.replaceAll("#webimg", img);
+			hw = Files.newWriter(new File(path), Charset.forName("utf-8"));
+			hw.write(template);
+		}  catch (Exception e) {
+			e.printStackTrace();
+			logger.error("indexTask",e);
+		} finally {
 			try {
-				template = template.replaceFirst("#row", getIndex(videos,false));
-				template = template.replaceFirst("#ad", getAd());
-				template = template.replaceAll("#webname", name);
-				template = template.replaceAll("#weburl", url);
-				template = template.replaceAll("#host", host);
-				//template = template.replaceAll("#webimg", img);
-				hw = Files.newWriter(new File(path), Charset.forName("utf-8"));
-				hw.write(template);
-			}  catch (Exception e) {
-				e.printStackTrace();
+				hw.close();
+			} catch (IOException e) {
 				logger.error("indexTask",e);
-			} finally {
-				try {
-					hw.close();
-				} catch (IOException e) {
-					logger.error("indexTask",e);
-				}
 			}
+			
+			BaiduPing.site("http://www.bbcow.com/"+path);
+			
 		}
 	}
 	public static String getAd(){
@@ -143,7 +151,7 @@ public class IndexTask {
 			});
 		}
 		int rows = videos.size() / 6;
-		StringBuffer sb = new StringBuffer("");
+		/*StringBuffer sb = new StringBuffer("");
 		for(int i=0 ; i<rows ; i++){
 			sb.append("<div class=\"row\">");
 			for(int j=0 ; j<6 ; j++){
@@ -158,6 +166,39 @@ public class IndexTask {
 					.append("<img src=\""+v.getImg()+"\" height='110px' alt=\""+v.getKeywords().replace("$", "\\$")+"\" class=\"col-md-12\">")
 					.append("<label>"+v.getTitle().replace("$", "\\$")+"</label>")
 					.append("</div></a></div>");
+			}
+			sb.append("</div>");
+		}*/
+		StringBuffer sb = new StringBuffer("");
+		for(int i=0 ; i<rows ; i++){
+			sb.append("<div class=\"row\">");
+			for(int j=0 ; j<6 ; j++){
+				Video v = videos.get(i * 6 + j);
+				sb.append("<div class=\"col-lg-2 col-md-2 col-sm-6 col-xs-12\">").append("<article class=\"block\">");
+				if(v.getId()!=null){
+					sb.append("<a class=\"block-thumbnail\" href=\"/video/"+ (v.getUri()==null?(v.getId().toString()+".html"):v.getUri())+"\"  target=\"_blank\" role=\"link\">");
+				}else{
+					sb.append("<a class=\"block-thumbnail\" href=\""+ v.getOriginal_url()+"\"  target=\"_blank\" role=\"link\">");
+				}
+				sb.append("<div class=\"thumbnail-overlay\"></div>")
+					.append("<span class=\"play-button-small\"></span>")
+					.append("<img src=\""+v.getImg()+"\" height='110px' alt=\""+v.getKeywords().replace("$", "\\$")+"\">")
+					.append("<div class=\"details\">")
+					.append("<h2>"+v.getTitle().replace("$", "\\$")+"</h2>")
+					.append("<span>"+v.getTag()+"</span>")
+					.append("</div></a>");
+				
+				sb.append("<div class=\"block-contents\">")
+					.append("<p class=\"date\"><span class=\"glyphicon glyphicon-user\" aria-hidden=\"true\">"+v.getView_count()+"</span>");
+				if(System.currentTimeMillis()-v.getUpdate_time().getTime() > 30*60*100){
+					sb.append("<span class=\"label label-default\">live</span>");
+				}else{
+					sb.append("<span class=\"label label-danger\">live</span>");
+				}
+				sb.append("</p><p class=\"desc\">"+v.getKeywords()+"</p>")
+					.append("</div>");
+				
+				sb.append("</article></div>");
 			}
 			sb.append("</div>");
 		}

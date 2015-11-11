@@ -1,8 +1,10 @@
 package com.bbcow.video;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -67,23 +69,25 @@ public class DouyuVideo extends AbstractVideoParser{
 			for (JsonElement e : items) {
 				JsonObject item = e.getAsJsonObject();
 				Video v = new Video();
-				v.setHost("douyutv.com");
+				v.setHost(HOST);
 				v.setKeywords(item.get("room_name").getAsString());
 				v.setTitle(item.get("nickname").getAsString());
 				v.setOriginal_url("http://www.douyutv.com"+item.get("url").getAsString());
 				v.setImg(item.get("room_src").getAsString());
 				v.setView_count(item.get("online").getAsLong());
 				v.setRoom_id(item.get("room_id").getAsString());
-				
-				parseHtml(v);
+				v.setUri("dy_"+item.get("room_id").getAsString()+".html");
+				v.setUpdate_time(new Date());
 				
 				douyus.add(v);
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
+			tops.put(HOST,new ArrayList<Video>(douyus.subList(0, 5)));
+			for(Video v : douyus){
+				parseHtml(v);
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("douyu"+e);
 		}
 		return douyus;
 	}
